@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Viewport Slider</title>
+    <link rel="stylesheet" href="../dist/css/viewport-slider.css">
     <style>
     body {
         margin: 0;
@@ -11,12 +12,14 @@
     </style>
 </head>
 <body>
-    <div class="slide" style="background-color: blue"></div>
-    <div class="slide" style="background-color: yellow"></div>
-    <div class="slide" style="background-color: red"></div>
+    <div id="container">
+        <div class="slide" style="background-color: blue"></div>
+        <div class="slide" style="background-color: yellow"></div>
+        <div class="slide" style="background-color: red"></div>
+    </div>
     <script src="../dist/js/viewport-slider.js"></script>
     <script>
-        viewportSlider.init('.slide');
+        viewportSlider.init(document.getElementById('container'), '.slide');
     </script>
 </body>
 </html>
