@@ -4,7 +4,7 @@
     height: 100%;
     width: 100%;
     @include box-sizing(border-box);
-    @include transition(transform .4s cubic-bezier(0, 0, .25, 1));
+    @include transition(transform 1s cubic-bezier(0, 0, .25, 1));
 }
 
 .viewport-slide {

@@ -11,7 +11,6 @@ var viewportSlider;
             this.root = root;
             this.root.classList.add('viewport-slide-container');
             this.lastScrolled = 0;
-            // this is needed due to trackpads that chain the mousewheel event
             // TODO: options
             this.animationHalt = 1500;
             this.currentSlide = 0;
