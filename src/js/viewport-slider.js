@@ -10,7 +10,9 @@ var viewportSlider = {};
         this.slides = document.querySelectorAll(selector);
         this.root = root;
         this.root.classList.add('viewport-slide');
-        this.isPaginating = false;
+        this.lastScrolled = 0;
+        // this is needed due to trackpads that chain the mousewheel event
+        this.animationHalt = 1500;
         this.currentSlide = 0;
         this.setUpSlides()
             .bindScroll();
@@ -37,7 +39,8 @@ var viewportSlider = {};
             };
 
         window.addEventListener('mousewheel', function (e) {
-            if (self.isPaginating) {
+            var scrollTime = new Date().getTime();
+            if (scrollTime - self.lastScrolled < self.animationHalt) {
                 return false;
             }
             e.preventDefault();
@@ -48,6 +51,7 @@ var viewportSlider = {};
             } else {
                 self.paginate(self.currentSlide + 1);
             }
+            self.lastScrolled = scrollTime;
         });
     };
 
@@ -56,12 +60,17 @@ var viewportSlider = {};
             return;
         }
         var self = this;
-        this.isPaginating = true;
-        this.root.style.webkitTransform = 'translate3d(0, -' + (index * document.documentElement.clientHeight) + 'px, 0)';
+        this.applyTransform(index * document.documentElement.clientHeight);
         setTimeout(function () {
-            self.isPaginating = false;
             self.currentSlide = index;
         }, 450);
+    };
+
+    viewportSlider.applyTransform = function applyTransform(pos) {
+        this.root.style["-webkit-transform"] = "translate3d(0, -" + pos + "px, 0)";
+        this.root.style["-moz-transform"] = "translate3d(0, -" + pos + "px, 0)";
+        this.root.style["-ms-transform"] = "translate3d(0, -" + pos + "px, 0)";
+        this.root.style.transform = "translate3d(0, -" + pos + "px, 0)";
     };
 
 }(window, document));
