@@ -7,7 +7,7 @@ var viewportSlider = {};
         document.body.style.overflow = 'hidden';
         this.slides = document.querySelectorAll(selector);
         this.root = root;
-        this.root.classList.add('viewport-slide');
+        this.root.classList.add('viewport-slide-container');
         this.lastScrolled = 0;
         // this is needed due to trackpads that chain the mousewheel event
         this.animationHalt = 1500;
@@ -20,8 +20,7 @@ var viewportSlider = {};
     viewportSlider.setUpSlides = function setUpSlides() {
         var i;
         for (i = 0; i < this.slides.length; i += 1) {
-            this.slides[i].style.height = document.documentElement.clientHeight + 'px';
-            this.slides[i].style.width = document.documentElement.clientWidth + 'px';
+            this.slides[i].classList.add('viewport-slide');
         }
         return this;
     };
@@ -58,17 +57,17 @@ var viewportSlider = {};
             return;
         }
         var self = this;
-        this.applyTransform(index * document.documentElement.clientHeight);
+        this.applyTransform(index * 100);
         setTimeout(function () {
             self.currentSlide = index;
         }, 450);
     };
 
     viewportSlider.applyTransform = function applyTransform(pos) {
-        this.root.style["-webkit-transform"] = "translate3d(0, -" + pos + "px, 0)";
-        this.root.style["-moz-transform"] = "translate3d(0, -" + pos + "px, 0)";
-        this.root.style["-ms-transform"] = "translate3d(0, -" + pos + "px, 0)";
-        this.root.style.transform = "translate3d(0, -" + pos + "px, 0)";
+        this.root.style["-webkit-transform"] = "translate3d(0, -" + pos + "%, 0)";
+        this.root.style["-moz-transform"] = "translate3d(0, -" + pos + "%, 0)";
+        this.root.style["-ms-transform"] = "translate3d(0, -" + pos + "%, 0)";
+        this.root.style.transform = "translate3d(0, -" + pos + "%, 0)";
     };
 
 }(window, document));

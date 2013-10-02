@@ -1,5 +1,14 @@
 @import "compass/css3";
 
+.viewport-slide-container {
+    height: 100%;
+    width: 100%;
+    @include box-sizing(border-box);
+    @include transition(transform .4s cubic-bezier(0, 0, .25, 1));
+}
+
 .viewport-slide {
-    @include transition(all .4s cubic-bezier(0, 0, .25, 1));
+    width: 100%;
+    height: 100%;
+    @include box-sizing(border-box);
 }
