@@ -39,6 +39,9 @@ module.exports = function(grunt) {
     };
 
     gruntConfig.uglify = {
+        options: {
+            report: 'gzip'
+        },
         build: {
             src: 'src/js/viewport-slider.js',
             dest: 'dist/js/<%= pkg.name %>.min.js'
