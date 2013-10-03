@@ -1,6 +1,7 @@
 {
   "name": "viewport-slider",
   "version": "0.1.0",
+  "repository": "https://github.com/daviferreira/viewport-slider",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-uglify": "~0.2.0",
