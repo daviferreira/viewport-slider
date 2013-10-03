@@ -13,7 +13,13 @@ describe('Initialization TestCase', function () {
     });
 
     afterEach(function () {
+        var paginators = document.querySelectorAll('.viewport-slider-paginator'),
+            i;
+        for (i = 0; i < paginators.length; i += 1) {
+            document.body.removeChild(paginators[i]);
+        }
         document.body.removeChild(this.el);
+        viewportSlider.currentSlide = 0;
     });
 
     it('should hide the document scroll', function () {

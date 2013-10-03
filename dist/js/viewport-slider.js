@@ -90,6 +90,9 @@ var viewportSlider;
             if (typeof callback === 'function') {
                 callback();
             }
+            if (this.options.paginator) {
+                viewportSliderPaginator.activate(index);
+            }
             setTimeout(function () {
                 self.currentSlide = index;
             }, this.options.animationHalt - 1);
@@ -142,23 +145,24 @@ var viewportSliderPaginator;
 
         bindPagination: function bindPagination() {
             var i,
-                self = this,
                 paginateFn = function (e) {
-                    var index = parseInt(this.getAttribute('data-index'), 10);
                     e.preventDefault();
-                    viewportSlider.paginate(index, function () {
-                        for (i = 0; i < self.links.length; i += 1) {
-                            if (i === index) {
-                                self.links[i].classList.add('active');
-                            } else {
-                                self.links[i].classList.remove('active');
-                            }
-                        }
-                    });
+                    viewportSlider.paginate(parseInt(this.getAttribute('data-index'), 10));
                 };
             this.links = this.root.querySelectorAll('a');
             for (i = 0; i < this.links.length; i += 1) {
                 this.links[i].addEventListener('click', paginateFn);
+            }
+        },
+
+        activate: function activate(index) {
+            var i;
+            for (i = 0; i < this.links.length; i += 1) {
+                if (i === index) {
+                    this.links[i].classList.add('active');
+                } else {
+                    this.links[i].classList.remove('active');
+                }
             }
         }
 

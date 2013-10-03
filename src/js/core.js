@@ -92,6 +92,9 @@ var viewportSlider;
             if (typeof callback === 'function') {
                 callback();
             }
+            if (this.options.paginator) {
+                viewportSliderPaginator.activate(index);
+            }
             setTimeout(function () {
                 self.currentSlide = index;
             }, this.options.animationHalt - 1);

@@ -1,5 +1,6 @@
 /*global viewportSlider, describe, it, expect, spyOn,
-         afterEach, beforeEach, fireEvent, jasmine*/
+         afterEach, beforeEach, fireEvent, jasmine,
+         console, viewportSliderPaginator*/
 
 describe('Paginate TestCase', function () {
     'use strict';
@@ -13,6 +14,11 @@ describe('Paginate TestCase', function () {
     });
 
     afterEach(function () {
+        var paginators = document.querySelectorAll('.viewport-slider-paginator'),
+            i;
+        for (i = 0; i < paginators.length; i += 1) {
+            document.body.removeChild(paginators[i]);
+        }
         document.body.removeChild(this.el);
         viewportSlider.currentSlide = 0;
     });
@@ -66,4 +72,23 @@ describe('Paginate TestCase', function () {
         expect(callback).toHaveBeenCalled();
     });
 
+    it('should activate the paginator bullet', function () {
+        var links = document.querySelectorAll('.viewport-slider-paginator-bullet'),
+            i;
+        viewportSlider.paginate(1);
+        for (i = 0; i < links.length; i += 1) {
+            if (i === 1) {
+                expect(links[i].className).toContain('active');
+            } else {
+                expect(links[i].className).not.toContain('active');
+            }
+        }
+    });
+
+    it('should not call paginator activate when paginator option is false', function () {
+        spyOn(viewportSliderPaginator, 'activate');
+        viewportSlider.init(this.el, '.slide', {paginator: false});
+        viewportSlider.paginate(1);
+        expect(viewportSliderPaginator.activate).not.toHaveBeenCalled();
+    });
 });
