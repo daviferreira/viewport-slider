@@ -43,7 +43,7 @@ describe('Paginate TestCase', function () {
         jasmine.Clock.useMock();
         expect(viewportSlider.currentSlide).toBe(0);
         viewportSlider.paginate(1);
-        jasmine.Clock.tick(viewportSlider.animationHalt);
+        jasmine.Clock.tick(viewportSlider.options.animationHalt);
         expect(viewportSlider.currentSlide).toBe(1);
     });
 

@@ -1,5 +1,5 @@
 /*global viewportSlider, describe, it, expect, spyOn,
-         afterEach, beforeEach, fireEvent*/
+         afterEach, beforeEach, fireEvent, viewportSliderPaginator*/
 
 describe('Initialization TestCase', function () {
     'use strict';
@@ -48,4 +48,31 @@ describe('Initialization TestCase', function () {
         expect(viewportSlider.bindScroll).toHaveBeenCalled();
     });
 
+    it('should have a default set of options', function () {
+        var defaultOptions = {
+                animationHalt: 1500,
+                paginator: true
+            };
+        expect(viewportSlider.options).toEqual(defaultOptions);
+    });
+
+    it('should accept custom options values', function () {
+        var options = {
+                animationHalt: 1000
+            };
+        viewportSlider.init(this.el, '.slide', options);
+        expect(viewportSlider.options).toEqual(options);
+    });
+
+    it('should call the paginator init', function () {
+        spyOn(viewportSliderPaginator, 'init');
+        viewportSlider.init(this.el, '.slide');
+        expect(viewportSliderPaginator.init).toHaveBeenCalled();
+    });
+
+    it('should not call the paginator init when paginator option is set to false', function () {
+        spyOn(viewportSliderPaginator, 'init');
+        viewportSlider.init(this.el, '.slide', {paginator: false});
+        expect(viewportSliderPaginator.init).not.toHaveBeenCalled();
+    });
 });

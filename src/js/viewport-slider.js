@@ -1,28 +1,48 @@
-/*global console*/
+/*global console, viewportSliderPaginator*/
 
 var viewportSlider;
 
 (function (window, document) {
     'use strict';
 
+    function extend(b, a) {
+        var prop;
+        if (b === undefined) {
+            return a;
+        }
+        for (prop in a) {
+            if (a.hasOwnProperty(prop) && b.hasOwnProperty(prop) === false) {
+                b[prop] = a[prop];
+            }
+        }
+        return b;
+    }
+
     viewportSlider = {
 
-        init: function init(root, selector) {
+        defaults: {
+            animationHalt: 1500,
+            paginator: true
+        },
+
+        init: function init(root, selector, options) {
             document.body.style.overflow = 'hidden';
+            this.options = extend(options, this.defaults);
             this.slides = document.querySelectorAll(selector);
             this.root = root;
             this.root.classList.add('viewport-slide-container');
-            this.lastScrolled = 0;
-            // TODO: options
-            this.animationHalt = 1500;
-            this.currentSlide = 0;
             this.setUpSlides()
                 .bindScroll();
+            if (this.options.paginator) {
+                viewportSliderPaginator.init();
+            }
             return this;
         },
 
         setUpSlides: function setUpSlides() {
             var i;
+            this.lastScrolled = 0;
+            this.currentSlide = 0;
             for (i = 0; i < this.slides.length; i += 1) {
                 this.slides[i].classList.add('viewport-slide');
             }
@@ -49,7 +69,7 @@ var viewportSlider;
         scroll: function scroll(e) {
             var scrollTime = new Date().getTime(),
                 delta = 0;
-            if (scrollTime - this.lastScrolled < this.animationHalt) {
+            if (scrollTime - this.lastScrolled < this.options.animationHalt) {
                 return false;
             }
             e.preventDefault();
@@ -71,7 +91,7 @@ var viewportSlider;
             this.applyTransform(index * 100);
             setTimeout(function () {
                 self.currentSlide = index;
-            }, this.animationHalt - 1);
+            }, this.options.animationHalt - 1);
         },
 
         applyTransform: function applyTransform(pos) {
