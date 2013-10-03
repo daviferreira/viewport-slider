@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     };
 
     gruntConfig.jslint = {
-        files: ['src/js/**/*.js', 'spec/*.js', 'Gruntfile.js'],
+        files: ['src/js/**/*.js', 'spec/*.js', 'spec/helpers/util.js', 'Gruntfile.js'],
         directives: {
             browser: true,
             unparam: true,
@@ -68,7 +68,7 @@ module.exports = function(grunt) {
 
     gruntConfig.watch = {
         scripts: {
-            files: ['src/js/**/*.js', 'spec/*.js', 'Gruntfile.js'],
+            files: ['src/js/**/*.js', 'spec/*.js', 'Gruntfile.js', 'spec/helpers/util.js'],
             tasks: ['js'],
             options: {
                 debounceDelay: 250

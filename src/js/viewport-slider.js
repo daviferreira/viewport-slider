@@ -71,14 +71,14 @@ var viewportSlider;
             this.applyTransform(index * 100);
             setTimeout(function () {
                 self.currentSlide = index;
-            }, 450);
+            }, this.animationHalt - 1);
         },
 
         applyTransform: function applyTransform(pos) {
-            this.root.style["-webkit-transform"] = "translate3d(0, -" + pos + "%, 0)";
-            this.root.style["-moz-transform"] = "translate3d(0, -" + pos + "%, 0)";
-            this.root.style["-ms-transform"] = "translate3d(0, -" + pos + "%, 0)";
-            this.root.style.transform = "translate3d(0, -" + pos + "%, 0)";
+            this.root.style['-webkit-transform'] = 'translate3d(0px, -' + pos + '%, 0px)';
+            this.root.style['-moz-transform'] = 'translate3d(0px, -' + pos + '%, 0px)';
+            this.root.style['-ms-transform'] = 'translate3d(0px, -' + pos + '%, 0px)';
+            this.root.style.transform = 'translate3d(0px, -' + pos + '%, 0px)';
         }
 
     };
