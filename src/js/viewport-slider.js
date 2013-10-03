@@ -33,7 +33,7 @@ var viewportSlider;
             this.root.classList.add('viewport-slide-container');
             this.setUpSlides()
                 .bindScroll();
-            if (this.options.paginator) {
+            if (this.options.paginator && this.slides.length > 1) {
                 viewportSliderPaginator.init();
             }
             return this;
@@ -67,11 +67,7 @@ var viewportSlider;
         },
 
         scroll: function scroll(e) {
-            var scrollTime = new Date().getTime(),
-                delta = 0;
-            if (scrollTime - this.lastScrolled < this.options.animationHalt) {
-                return false;
-            }
+            var delta = 0;
             e.preventDefault();
             e.stopPropagation();
             delta = this.getWheelDirection(e);
@@ -80,15 +76,22 @@ var viewportSlider;
             } else {
                 this.paginate(this.currentSlide + 1);
             }
-            this.lastScrolled = scrollTime;
         },
 
-        paginate: function paginate(index) {
-            if (index < 0 || index > (this.slides.length - 1)) {
+        paginate: function paginate(index, callback) {
+            if (index < 0 || index > (this.slides.length - 1) || index === this.currentSlide) {
                 return;
             }
-            var self = this;
+            var scrollTime = new Date().getTime(),
+                self = this;
+            if (scrollTime - this.lastScrolled < this.options.animationHalt) {
+                return false;
+            }
             this.applyTransform(index * 100);
+            this.lastScrolled = scrollTime;
+            if (typeof callback === 'function') {
+                callback();
+            }
             setTimeout(function () {
                 self.currentSlide = index;
             }, this.options.animationHalt - 1);

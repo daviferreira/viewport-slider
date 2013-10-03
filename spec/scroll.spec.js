@@ -41,13 +41,6 @@ describe('Scroll TestCase', function () {
         expect(viewportSlider.paginate).toHaveBeenCalledWith(-1);
     });
 
-    it('should do nothing when scrollTime is less than animationHalt', function () {
-        fireEvent(window, 'mousewheel', {wheelDelta: 120});
-        spyOn(viewportSlider, 'paginate');
-        fireEvent(window, 'mousewheel', {wheelDelta: 120});
-        expect(viewportSlider.paginate).not.toHaveBeenCalled();
-    });
-
     it('should user window.event when e is undefined', function () {
         window.event = {
             detail: -1

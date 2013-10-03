@@ -29,6 +29,12 @@ describe('Paginate TestCase', function () {
         expect(viewportSlider.applyTransform).not.toHaveBeenCalled();
     });
 
+    it('should do nothing when index is the same as currentSlide', function () {
+        spyOn(viewportSlider, 'applyTransform');
+        viewportSlider.paginate(0);
+        expect(viewportSlider.applyTransform).not.toHaveBeenCalled();
+    });
+
     it('should set the css transform on the root element', function () {
         spyOn(viewportSlider, 'applyTransform').andCallThrough();
         viewportSlider.paginate(1);
@@ -45,6 +51,19 @@ describe('Paginate TestCase', function () {
         viewportSlider.paginate(1);
         jasmine.Clock.tick(viewportSlider.options.animationHalt);
         expect(viewportSlider.currentSlide).toBe(1);
+    });
+
+    it('should do nothing when scrollTime is less than animationHalt', function () {
+        var res = viewportSlider.paginate(1);
+        expect(res).toBe(undefined);
+        res = viewportSlider.paginate(1);
+        expect(res).toBe(false);
+    });
+
+    it('should execute the callback when it is present', function () {
+        var callback = jasmine.createSpy();
+        viewportSlider.paginate(1, callback);
+        expect(callback).toHaveBeenCalled();
     });
 
 });

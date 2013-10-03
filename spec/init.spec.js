@@ -75,4 +75,11 @@ describe('Initialization TestCase', function () {
         viewportSlider.init(this.el, '.slide', {paginator: false});
         expect(viewportSliderPaginator.init).not.toHaveBeenCalled();
     });
+
+    it('should not call the paginator init when slides length is 1 or less', function () {
+        this.el.innerHTML = '<section class="slide">only 1 slide</section>';
+        spyOn(viewportSliderPaginator, 'init');
+        viewportSlider.init(this.el, '.slide', {paginator: false});
+        expect(viewportSliderPaginator.init).not.toHaveBeenCalled();
+    });
 });

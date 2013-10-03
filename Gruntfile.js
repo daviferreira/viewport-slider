@@ -43,7 +43,7 @@ module.exports = function(grunt) {
             report: 'gzip'
         },
         build: {
-            src: 'src/js/viewport-slider.js',
+            src: ['src/js/viewport-slider.js', 'src/js/viewport-slider-paginator.js'],
             dest: 'dist/js/<%= pkg.name %>.min.js'
         }
     };
@@ -91,7 +91,7 @@ module.exports = function(grunt) {
             stripBanners: true
         },
         dist: {
-            src: 'src/js/viewport-slider.js',
+            src: ['src/js/viewport-slider.js', 'src/js/viewport-slider-paginator.js'],
             dest: 'dist/js/<%= pkg.name %>.js'
         }
     };
