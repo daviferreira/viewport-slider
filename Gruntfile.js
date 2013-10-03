@@ -43,7 +43,7 @@ module.exports = function(grunt) {
             report: 'gzip'
         },
         build: {
-            src: ['src/js/viewport-slider.js', 'src/js/viewport-slider-paginator.js'],
+            src: ['src/js/core.js', 'src/js/paginator.js'],
             dest: 'dist/js/<%= pkg.name %>.min.js'
         }
     };
@@ -91,7 +91,7 @@ module.exports = function(grunt) {
             stripBanners: true
         },
         dist: {
-            src: ['src/js/viewport-slider.js', 'src/js/viewport-slider-paginator.js'],
+            src: ['src/js/core.js', 'src/js/paginator.js'],
             dest: 'dist/js/<%= pkg.name %>.js'
         }
     };
@@ -99,7 +99,7 @@ module.exports = function(grunt) {
     gruntConfig.plato = {
         feed: {
             files: {
-                'reports/plato': ['src/js/viewport-slider.js']
+                'reports/plato': ['src/js/core.js', 'src/js/paginator.js']
             }
         }
     };
