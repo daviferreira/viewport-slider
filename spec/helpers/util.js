@@ -10,5 +10,8 @@ function fireEvent(element, event, options) {
     if (options.wheelDelta) {
         evt.wheelDelta = options.wheelDelta;
     }
+    if (options.keyCode) {
+        evt.keyCode = options.keyCode;
+    }
     return !element.dispatchEvent(evt);
 }

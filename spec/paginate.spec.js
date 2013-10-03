@@ -91,4 +91,18 @@ describe('Paginate TestCase', function () {
         viewportSlider.paginate(1);
         expect(viewportSliderPaginator.activate).not.toHaveBeenCalled();
     });
+
+    describe('Keyboard Navigation', function () {
+        it('should paginate up when user presses the arrow up key', function () {
+            spyOn(viewportSlider, 'paginate');
+            fireEvent(document.body, 'keydown', {keyCode: 38});
+            expect(viewportSlider.paginate).toHaveBeenCalledWith(-1);
+        });
+
+        it('should paginate down when user presses the arrow down key', function () {
+            spyOn(viewportSlider, 'paginate');
+            fireEvent(document.body, 'keydown', {keyCode: 40});
+            expect(viewportSlider.paginate).toHaveBeenCalledWith(1);
+        });
+    });
 });

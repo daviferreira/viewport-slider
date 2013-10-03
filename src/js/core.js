@@ -32,7 +32,8 @@ var viewportSlider;
             this.root = root;
             this.root.classList.add('viewport-slide-container');
             this.setUpSlides()
-                .bindScroll();
+                .bindScroll()
+                .bindKeyboard();
             if (this.options.paginator && this.slides.length > 1) {
                 viewportSliderPaginator.init();
             }
@@ -57,6 +58,22 @@ var viewportSlider;
 
             window.addEventListener('mousewheel', onMouseWheel);
             window.addEventListener('DOMMouseScroll', onMouseWheel);
+            return this;
+        },
+
+        bindKeyboard: function bindKeyboard() {
+            var self = this;
+            document.body.addEventListener('keydown', function (e) {
+                var keyCode = e.keyCode || e.which;
+                // up
+                if (keyCode === 38) {
+                    self.paginate(self.currentSlide - 1);
+                // down
+                } else if (keyCode === 40) {
+                    self.paginate(self.currentSlide + 1);
+                }
+            });
+            return this;
         },
 
         getWheelDirection: function getWheelDirection(e) {
