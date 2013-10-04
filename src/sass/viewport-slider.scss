@@ -48,6 +48,7 @@
         background-color: #aaa;
         @include border-radius(50%);
         @include box-sizing(border-box);
+        @include transition(all .2s ease);
     }
     .active {
         span {
