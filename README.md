@@ -1,6 +1,6 @@
 # ViewportSlider
 
-ViewportSlider is a pure JavaScript implementarion of Apple's product page showcase (ie. http://www.apple.com/iphone-5c/).
+ViewportSlider is a pure JavaScript implementation of Apple's product page showcase (ie. http://www.apple.com/iphone-5c/).
 
 [![Build Status](https://travis-ci.org/daviferreira/viewport-slider.png?branch=master)](https://travis-ci.org/daviferreira/viewport-slider)
 
