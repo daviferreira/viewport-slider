@@ -30,8 +30,8 @@ describe('Initialization TestCase', function () {
         expect(viewportSlider.slides.length).toBe(2);
     });
 
-    it('should add viewport-slide-container class to the root element', function () {
-        expect(this.el.className).toContain('viewport-slide-container');
+    it('should add viewport-slider-container class to the root element', function () {
+        expect(this.el.className).toContain('viewport-slider-container');
     });
 
     it('should call the setUpSlides method', function () {

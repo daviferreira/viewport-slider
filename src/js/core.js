@@ -30,7 +30,7 @@ var viewportSlider;
             this.options = extend(options, this.defaults);
             this.slides = document.querySelectorAll(selector);
             this.root = root;
-            this.root.classList.add('viewport-slide-container');
+            this.root.classList.add('viewport-slider-container');
             this.setUpSlides()
                 .bindScroll()
                 .bindKeyboard();
