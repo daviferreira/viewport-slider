@@ -18,6 +18,11 @@ var viewportSlider;
         return b;
     }
 
+    function isTouchDevice() {
+        return window.ontouchstart !== undefined // works on most browsers
+            || window.onmsgesturechange !== undefined; // works on ie10
+    }
+
     viewportSlider = {
 
         defaults: {
@@ -36,6 +41,9 @@ var viewportSlider;
                 .bindKeyboard();
             if (this.options.paginator && this.slides.length > 1) {
                 viewportSliderPaginator.init();
+            }
+            if (isTouchDevice()) {
+                this.bindTouch();
             }
             return this;
         },
@@ -63,7 +71,7 @@ var viewportSlider;
 
         bindKeyboard: function bindKeyboard() {
             var self = this;
-            document.body.addEventListener('keydown', function (e) {
+            this.root.addEventListener('keydown', function (e) {
                 var keyCode = e.keyCode || e.which;
                 switch (keyCode) {
                 // home
@@ -87,6 +95,23 @@ var viewportSlider;
                 }
             });
             return this;
+        },
+
+        bindTouch: function bindTouch() {
+            var self = this;
+            this.position = 0;
+            this.root.addEventListener('touchmove', function (e) {
+                e.preventDefault();
+                var touchobj = e.changedTouches[0], // reference first touch point for this event
+                    objPosition = parseInt(touchobj.clientX, 10),
+                    dist = objPosition - self.position;
+                if (dist < 0) {
+                    self.paginate(self.currentSlide - 1);
+                } else if (dist > 0) {
+                    self.paginate(self.currentSlide + 1);
+                }
+                self.position = objPosition;
+            });
         },
 
         getWheelDirection: function getWheelDirection(e) {
