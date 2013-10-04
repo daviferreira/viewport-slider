@@ -71,7 +71,7 @@ var viewportSlider;
 
         bindKeyboard: function bindKeyboard() {
             var self = this;
-            this.root.addEventListener('keydown', function (e) {
+            document.body.addEventListener('keydown', function (e) {
                 var keyCode = e.keyCode || e.which;
                 switch (keyCode) {
                 // home
@@ -100,7 +100,7 @@ var viewportSlider;
         bindTouch: function bindTouch() {
             var self = this;
             this.position = 0;
-            this.root.addEventListener('touchmove', function (e) {
+            document.body.addEventListener('touchmove', function (e) {
                 e.preventDefault();
                 var touchobj = e.changedTouches[0], // reference first touch point for this event
                     objPosition = parseInt(touchobj.clientX, 10),
