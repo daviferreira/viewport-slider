@@ -7,3 +7,4 @@
 * keyboard support
 * option to not show on pagination
 * pagination labels
+* permalinks / pushState
