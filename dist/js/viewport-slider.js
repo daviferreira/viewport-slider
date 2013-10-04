@@ -65,9 +65,11 @@ var viewportSlider;
                 var keyCode = e.keyCode || e.which;
                 // up
                 if (keyCode === 38) {
+                    e.preventDefault();
                     self.paginate(self.currentSlide - 1);
                 // down
                 } else if (keyCode === 40) {
+                    e.preventDefault();
                     self.paginate(self.currentSlide + 1);
                 }
             });
