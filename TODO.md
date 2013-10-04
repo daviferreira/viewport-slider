@@ -9,3 +9,4 @@
 * pagination labels
 * permalinks / pushState
 * loader?
+* pgup, pgdown, home, end
