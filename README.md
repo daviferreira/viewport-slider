@@ -4,6 +4,23 @@ ViewportSlider is a pure JavaScript implementarion of Apple's product page showc
 
 [![Build Status](https://travis-ci.org/daviferreira/viewport-slider.png?branch=master)](https://travis-ci.org/daviferreira/viewport-slider)
 
+# Basic usage
+
+First, you need to attach ViewportSlider stylesheet to your page:
+
+```html
+<link rel="stylesheet" href="css/viewport-slider.css">
+```
+
+The next step is to reference the slider script and initialize the ViewportSlider object:
+
+```html
+<script src="js/viewport-slider.js"></script>
+<script>viewportSlider.init(document.getElementById('container'), '.slide');</script>
+```
+
+The above code will transform all the elements with the .slide class into full viewport slides and add a navigation behavior to them (either by using the mousewheel/trackpad and keyboard or by clicking on the navigation bullets). The initialization receives two parameters: the root element for the slides and the slides' class name.
+
 ## Development
 
 ViewportSlider development tasks are managed by Grunt. To install all the necessary packages, just invoke:
