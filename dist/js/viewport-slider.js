@@ -97,18 +97,18 @@ var viewportSlider;
 
         bindTouch: function bindTouch() {
             var self = this;
-            this.position = 0;
+            this.touchPosition = 0;
             document.body.addEventListener('touchmove', function (e) {
                 e.preventDefault();
-                var touchobj = e.changedTouches[0], // reference first touch point for this event
-                    objPosition = parseInt(touchobj.clientX, 10),
-                    dist = objPosition - self.position;
+                var touchObj = e.changedTouches[0],
+                    objPosition = parseInt(touchObj.clientX, 10),
+                    dist = objPosition - self.touchPosition;
                 if (dist < 0) {
                     self.paginate(self.currentSlide - 1);
                 } else if (dist > 0) {
                     self.paginate(self.currentSlide + 1);
                 }
-                self.position = objPosition;
+                self.touchPosition = objPosition;
             });
         },
 
