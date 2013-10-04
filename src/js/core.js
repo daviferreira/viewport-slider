@@ -26,7 +26,7 @@ var viewportSlider;
         },
 
         init: function init(root, selector, options) {
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflowY = 'hidden';
             this.options = extend(options, this.defaults);
             this.slides = document.querySelectorAll(selector);
             this.root = root;

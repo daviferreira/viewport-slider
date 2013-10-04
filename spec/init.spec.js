@@ -23,7 +23,7 @@ describe('Initialization TestCase', function () {
     });
 
     it('should hide the document scroll', function () {
-        expect(document.body.style.overflow).toBe('hidden');
+        expect(document.body.style.overflowY).toBe('hidden');
     });
 
     it('should collect slide elements', function () {
