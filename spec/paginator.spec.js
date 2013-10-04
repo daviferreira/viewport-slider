@@ -35,4 +35,12 @@ describe('Paginate TestCase', function () {
         expect(viewportSlider.paginate).toHaveBeenCalledWith(0);
     });
 
+    it('should add a label to the bullet if the slide has the data-label attribute', function () {
+        this.el.innerHTML = '<section class="slide" data-label="First slide">1</section>' +
+                            '<section class="slide">2</section>';
+        viewportSlider.init(this.el, '.slide');
+        expect(viewportSliderPaginator.bullets[0].querySelector('.label').innerHTML).toBe('First slide');
+        expect(viewportSliderPaginator.bullets[1].querySelector('.label')).toBeFalsy();
+    });
+
 });

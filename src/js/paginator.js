@@ -25,11 +25,15 @@ var viewportSliderPaginator;
 
         renderBullets: function renderBullets() {
             var i,
-                html = '';
+                html = '',
+                label;
             for (i = 0; i < viewportSlider.slides.length; i += 1) {
+                label = viewportSlider.slides[i].getAttribute('data-label');
                 html += '<li><a href="#" data-index="' + i + '" class="' +
                         (i === 0 ? 'active ' : '') +
-                        'viewport-slider-paginator-bullet"><span></span></a></li>';
+                        'viewport-slider-paginator-bullet">' +
+                        (label ? '<span class="label">' + label + '</span>' : '') +
+                        '<span class="bullet"></span></a></li>';
             }
             return html;
         },
