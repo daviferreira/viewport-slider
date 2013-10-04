@@ -13,5 +13,8 @@ function fireEvent(element, event, options) {
     if (options.keyCode) {
         evt.keyCode = options.keyCode;
     }
+    if (options.which) {
+        evt.which = options.which;
+    }
     return !element.dispatchEvent(evt);
 }

@@ -93,10 +93,28 @@ describe('Paginate TestCase', function () {
     });
 
     describe('Keyboard Navigation', function () {
+        it('should paginate to the first slide when the user presses the home key', function () {
+            spyOn(viewportSlider, 'paginate');
+            fireEvent(document.body, 'keydown', {keyCode: 36});
+            expect(viewportSlider.paginate).toHaveBeenCalledWith(0);
+        });
+
+        it('should paginate up when user presses the page up key', function () {
+            spyOn(viewportSlider, 'paginate');
+            fireEvent(document.body, 'keydown', {keyCode: 33});
+            expect(viewportSlider.paginate).toHaveBeenCalledWith(-1);
+        });
+
         it('should paginate up when user presses the arrow up key', function () {
             spyOn(viewportSlider, 'paginate');
             fireEvent(document.body, 'keydown', {keyCode: 38});
             expect(viewportSlider.paginate).toHaveBeenCalledWith(-1);
+        });
+
+        it('should paginate down when user presses the page down key', function () {
+            spyOn(viewportSlider, 'paginate');
+            fireEvent(document.body, 'keydown', {keyCode: 34});
+            expect(viewportSlider.paginate).toHaveBeenCalledWith(1);
         });
 
         it('should paginate down when user presses the arrow down key', function () {
@@ -104,5 +122,20 @@ describe('Paginate TestCase', function () {
             fireEvent(document.body, 'keydown', {keyCode: 40});
             expect(viewportSlider.paginate).toHaveBeenCalledWith(1);
         });
+
+        it('should paginate to the last slide when user presses the end key', function () {
+            spyOn(viewportSlider, 'paginate');
+            this.el.innerHTML = '<section class="slide">1</section>' +
+                                '<section class="slide">2</section>' +
+                                '<section class="slide">3</section>' +
+                                '<section class="slide">4</section>' +
+                                '<section class="slide">5</section>' +
+                                '<section class="slide">6</section>';
+            viewportSlider.init(this.el, '.slide');
+
+            fireEvent(document.body, 'keydown', {which: 35});
+            expect(viewportSlider.paginate).toHaveBeenCalledWith(5);
+        });
+
     });
 });

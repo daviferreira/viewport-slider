@@ -63,14 +63,25 @@ var viewportSlider;
             var self = this;
             document.body.addEventListener('keydown', function (e) {
                 var keyCode = e.keyCode || e.which;
-                // up
-                if (keyCode === 38) {
-                    e.preventDefault();
+                switch (keyCode) {
+                // home
+                case 36:
+                    self.paginate(0);
+                    break;
+                // pgup, arrup
+                case 33:
+                case 38:
                     self.paginate(self.currentSlide - 1);
-                // down
-                } else if (keyCode === 40) {
-                    e.preventDefault();
+                    break;
+                // pgdown, arrdown
+                case 34:
+                case 40:
                     self.paginate(self.currentSlide + 1);
+                    break;
+                // end
+                case 35:
+                    self.paginate(self.slides.length - 1);
+                    break;
                 }
             });
             return this;
