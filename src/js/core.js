@@ -102,7 +102,9 @@ var viewportSlider;
                 return;
             }
             var self = this;
-            return new Hammer(this.root).on('swipeup', function () {
+            return new Hammer(this.root, {
+                prevent_default: true
+            }).on('swipeup', function () {
                 self.paginate(self.currentSlide - 1);
             }).on('swipedown', function () {
                 self.paginate(self.currentSlide + 1);
