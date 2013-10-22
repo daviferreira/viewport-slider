@@ -26,7 +26,7 @@ The above code will transform all the elements with the .slide class into full v
 To enable swipe pagination, ViewportSlider uses the awesome [Hammer Library](http://eightmedia.github.io/hammer.js/). You need to reference it manually. The lib directory includes the latest version:
 
 ```html
-*<script src="js/hammer.min.js"></script>*
+<script src="js/hammer.min.js"></script>
 <script src="js/viewport-slider.js"></script>
 <script>viewportSlider.init(document.getElementById('container'), '.slide');</script>
 ```
