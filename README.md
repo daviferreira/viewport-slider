@@ -21,6 +21,16 @@ The next step is to reference the slider script and initialize the ViewportSlide
 
 The above code will transform all the elements with the .slide class into full viewport slides and add a navigation behavior to them (either by using the mousewheel/trackpad and keyboard or by clicking on the navigation bullets). The initialization receives two parameters: the root element for the slides and the slides' class name.
 
+## Touch Support
+
+To enable swipe pagination, ViewportSlider uses the awesome [Hammer Library](http://eightmedia.github.io/hammer.js/). You need to reference it manually. The lib directory includes the latest version:
+
+```html
+*<script src="js/hammer.min.js"></script>*
+<script src="js/viewport-slider.js"></script>
+<script>viewportSlider.init(document.getElementById('container'), '.slide');</script>
+```
+
 ## Development
 
 ViewportSlider development tasks are managed by Grunt. To install all the necessary packages, just invoke:
