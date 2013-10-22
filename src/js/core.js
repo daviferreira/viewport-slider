@@ -99,7 +99,7 @@ var viewportSlider;
 
         bindSwipe: function bindSwipe() {
             if (Hammer === undefined) {
-                return;
+                return false;
             }
             var self = this;
             return new Hammer(this.root, {
