@@ -41,7 +41,7 @@ var viewportSlider;
                 viewportSliderPaginator.init();
             }
             if (isTouchDevice()) {
-                this.bindTouch();
+                this.bindSwipe();
             }
             return this;
         },
@@ -95,20 +95,15 @@ var viewportSlider;
             return this;
         },
 
-        bindTouch: function bindTouch() {
+        bindSwipe: function bindSwipe() {
+            if (Hammer === undefined) {
+                return;
+            }
             var self = this;
-            this.touchPosition = 0;
-            document.body.addEventListener('touchmove', function (e) {
-                e.preventDefault();
-                var touchObj = e.changedTouches[0],
-                    objPosition = parseInt(touchObj.clientX, 10),
-                    dist = objPosition - self.touchPosition;
-                if (dist < 0) {
-                    self.paginate(self.currentSlide - 1);
-                } else if (dist > 0) {
-                    self.paginate(self.currentSlide + 1);
-                }
-                self.touchPosition = objPosition;
+            return new Hammer(this.root).on('swipeup', function () {
+                self.paginate(self.currentSlide - 1);
+            }).on('swipedown', function () {
+                self.paginate(self.currentSlide + 1);
             });
         },
 

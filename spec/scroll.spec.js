@@ -46,7 +46,7 @@ describe('Scroll TestCase', function () {
         expect(viewportSlider.paginate).toHaveBeenCalledWith(-1);
     });
 
-    it('should user window.event when e is undefined', function () {
+    it('should use window.event when e is undefined', function () {
         window.event = {
             detail: -1
         };
