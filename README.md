@@ -53,3 +53,7 @@ The source files are located inside the __src__ directory. ViewportSlider styles
 "THE BEER-WARE LICENSE" (Revision 42):
 
 As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/daviferreira/viewport-slider/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
