@@ -48,6 +48,14 @@ These are the available grunt tasks:
 
 The source files are located inside the __src__ directory. ViewportSlider stylesheet was created using sass/compass, make sure you have the compass gem installed on your system.
 
+## Methods
+
+Use can use the following method to switch manually between the slides.
+
+```javascript
+viewportSlider.paginate(index, callback);
+```
+
 ## License
 
 "THE BEER-WARE LICENSE" (Revision 42):
