@@ -131,7 +131,14 @@ var viewportSlider;
         },
 
         paginate: function paginate(index, callback) {
-            if (index < 0 || index > (this.slides.length - 1) || index === this.currentSlide) {
+            if (index === this.slides.length) { // this.slides.length: one step over the last slide
+		this.paginate(0, null);
+	    }
+	    
+            else if (index === -1 && this.slides.length>=1) { // -1: the 
+		this.paginate(this.slides.length-1, null);
+	    }
+	    else if (index < 0 || index > (this.slides.length - 1) || index === this.currentSlide) {
                 return;
             }
             var scrollTime = new Date().getTime(),
